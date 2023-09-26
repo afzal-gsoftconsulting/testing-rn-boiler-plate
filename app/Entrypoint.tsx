@@ -5,15 +5,18 @@ import Home from './screens/Home';
 import {defaultTheme} from './theme/defaultTheme';
 import {PaperProvider} from 'react-native-paper';
 import {Provider} from 'react-redux';
-import {store} from './store';
+import {persistor, store} from './store';
+import {PersistGate} from 'redux-persist/es/integration/react';
 
 function App(): JSX.Element {
   const theme = defaultTheme;
   return (
     <Provider store={store}>
-      <PaperProvider theme={theme}>
-        <Home />
-      </PaperProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <PaperProvider theme={theme}>
+          <Home />
+        </PaperProvider>
+      </PersistGate>
     </Provider>
   );
 }
