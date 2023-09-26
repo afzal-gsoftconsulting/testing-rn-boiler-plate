@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply plugin: "com.facebook.react"
 
 /**
@@ -75,11 +76,13 @@ android {
 
     namespace "com.mytestingapp2"
     defaultConfig {
-        applicationId "com.mytestingapp2"
+        applicationId project.env.get("BUNDLE_NAME")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resValue "string", "build_config_package", "com.mytestingapp2"
+
     }
     signingConfigs {
         debug {

@@ -1,0 +1,10 @@
+#include? "tmp.xcconfig"
+
+//  Config.xcconfig
+//  MyTestingApp2
+//
+//  Created by gsoft-mac-01 on 26/09/2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974

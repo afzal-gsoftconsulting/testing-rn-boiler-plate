@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../store/slice/userSlice';
 import {RootState} from '../store/slice';
 import {loginRequest} from '../store/actions/authActions';
+import Config from 'react-native-config';
 
 const Home = () => {
   const {t, i18n} = useTranslation();
@@ -13,6 +14,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
   // console.log('user', user);
+  console.log({Config: Config?.TEST_VARIABLE}, Config);
 
   return (
     <SafeAreaView>
