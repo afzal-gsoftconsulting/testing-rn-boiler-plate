@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import {I18nManager, SafeAreaView, Text} from 'react-native';
+import {
+  Animated,
+  I18nManager,
+  Pressable,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../store/slice/userSlice';
 import {RootState} from '../store/slice';
 import {loginRequest} from '../store/actions/authActions';
 import Config from 'react-native-config';
+import LottieView from 'lottie-react-native';
 
+// animations realated code...
 const Home = () => {
   const {t, i18n} = useTranslation();
   const theme = useTheme();
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
   // console.log('user', user);
-  console.log({Config: Config?.TEST_VARIABLE}, Config);
-
+  // console.log({Config: Config?.TEST_VARIABLE}, Config);
+  const animationRef = useRef<LottieView>(null);
+  const animationProgress = useRef(0);
   return (
     <SafeAreaView>
       <Text
@@ -33,6 +43,26 @@ const Home = () => {
         style={{color: theme.colors.heading}}>
         dfdf {t('Home.title')}
       </Text>
+      <Pressable
+        onPress={() => {
+          // animationRef.current?.reset();
+          if (animationProgress.current == 0) {
+            animationRef.current?.play(1, 120);
+            animationProgress.current = 1;
+          } else {
+            animationRef.current?.reset();
+            animationProgress.current = 0;
+          }
+        }}>
+        <LottieView
+          ref={animationRef}
+          source={require('../assets/animations/animation.json')}
+          // autoPlay
+          loop={false}
+          style={{width: 60, height: 60}}
+          progress={animationProgress.current}
+        />
+      </Pressable>
     </SafeAreaView>
   );
 };
