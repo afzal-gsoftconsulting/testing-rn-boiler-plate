@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Animated,
@@ -15,6 +15,8 @@ import {RootState} from '../store/slice';
 import {loginRequest} from '../store/actions/authActions';
 import Config from 'react-native-config';
 import LottieView from 'lottie-react-native';
+import RefConcept from '../components/RefConcept';
+import HOCExample from '../components/HOCExample';
 
 // animations realated code...
 const Home = () => {
@@ -26,6 +28,8 @@ const Home = () => {
   // console.log({Config: Config?.TEST_VARIABLE}, Config);
   const animationRef = useRef<LottieView>(null);
   const animationProgress = useRef(0);
+  // console.log({__DEV__});
+
   return (
     <SafeAreaView>
       <Text
@@ -63,6 +67,8 @@ const Home = () => {
           progress={animationProgress.current}
         />
       </Pressable>
+      <RefConcept />
+      {/* <HOCExample /> */}
     </SafeAreaView>
   );
 };
